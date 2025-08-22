@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node bot_config.js",
-    "check": "node check_inactive.js"
+    "cron": "node check_inactive.js"
   },
   "dependencies": {
     "dotenv": "^17.2.0",
