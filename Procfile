@@ -1,2 +1,2 @@
-worker: node bot_config.js
-worker: node check_inactive.js
+bot: node bot_config.js
+cron: node check_inactive.js
