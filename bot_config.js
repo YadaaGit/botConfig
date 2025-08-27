@@ -34,7 +34,7 @@ const replyKeyboard = {
 
 // ===== Inline Button (appears under message) =====
 const inlineOpenApp = {
-  inline_keyboard: [[{ text: "🚀 Open App", url: appUrl }]],
+  inline_keyboard: [[{ text: "🚀 መተግበሪያውን ክፈት", url: appUrl }]],
 };
 
 // ===== Helpers =====
@@ -44,7 +44,7 @@ function sendWelcome(chatId, text) {
 
   // Then send inline app button separately
   if (appUrl) {
-    bot.sendMessage(chatId, "👇 Open the platform:", {
+    bot.sendMessage(chatId, "👇 መተግበሪያውን ክፈት:", {
       reply_markup: inlineOpenApp,
     });
   }
@@ -55,23 +55,21 @@ function sendWelcome(chatId, text) {
 // /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  console.log(`📥 /start from chatId: ${chatId}`);
-  sendWelcome(chatId, "👋 Welcome! Use the commands or open the app below.");
+  sendWelcome(chatId, "ሰላም!\nበዚህ ቦት በኩል የተለያዩ ርዕሶች ላይ የቀረቡ ትምህርቶችን መማር እንዲሁም ማጠናቀቆን የሚያሳይ ሰርተፍኬት ያገኛሉ!\nመማር ለመጀመር መተግበርያውን ይክፈቱ");
 });
 
 // /about
 bot.onText(/\/about/, (msg) => {
   const chatId = msg.chat.id;
-  console.log(`📥 /about from chatId: ${chatId}`);
 
   bot.sendMessage(
     chatId,
-    "📚 This bot connects you to our learning platform. You can take courses, track progress, and more!",
+    "📚 በዚህ ቦት በኩል የተለያዩ ርዕሶች ላይ የቀረቡ ትምህርቶችን መማር እንዲሁም ማጠናቀቆን የሚያሳይ ሰርተፍኬት ያገኛሉ\nመማር ለመጀመር መተግበርያውን ይክፈቱ",
     { reply_markup: replyKeyboard }
   );
 
   if (appUrl) {
-    bot.sendMessage(chatId, "👇 Open the platform:", {
+    bot.sendMessage(chatId, "👇 መተግበሪያውን ክፈት:", {
       reply_markup: inlineOpenApp,
     });
   }
@@ -80,11 +78,10 @@ bot.onText(/\/about/, (msg) => {
 // /help
 bot.onText(/\/help/, (msg) => {
   const chatId = msg.chat.id;
-  console.log(`📥 /help from chatId: ${chatId}`);
 
   bot.sendMessage(
     chatId,
-    "🛠 Commands available:\n/start - Welcome screen\n/about - About us\n/help - This menu",
+    "🛠 ያሉት ትዕዛዞች:\n/about - ስለኛ ለማወቅ\n/help - ያሉትን ትዕዛዞች ለማየት",
     { reply_markup: replyKeyboard }
   );
 });
@@ -97,16 +94,15 @@ bot.on("message", (msg) => {
   // Skip known commands
   if (["/start", "/about", "/help"].includes(text)) return;
 
-  console.log(`🤔 Unknown message from chatId ${chatId}: "${text}"`);
 
   bot.sendMessage(
     chatId,
-    "❓ I didn't recognize that. Use the commands below or tap the app button.",
+    "❓ የላኩት ትዕዛዛ/መልክት አይታወቅም\n\nመተግበርያውን በመክፈት ይቀጥሉ\n\nለበለጠ መረጃ /about ብለው ይላኩ",
     { reply_markup: replyKeyboard }
   );
 
   if (appUrl) {
-    bot.sendMessage(chatId, "👇 Open the platform:", {
+    bot.sendMessage(chatId, "👇 መተግበሪያውን ክፈት:", {
       reply_markup: inlineOpenApp,
     });
   }
